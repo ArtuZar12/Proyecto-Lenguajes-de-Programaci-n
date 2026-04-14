@@ -1,0 +1,48 @@
+/* =========================================
+   1. FONDO DE LA VENTANA (MAINWINDOW)
+   ========================================= */
+QMainWindow, #centralwidget {
+    background-color: #0a0a0a; /* Negro oscuro profundo */
+}
+
+/* =========================================
+   2. TEXTOS (LABELS)
+   ========================================= */
+QLabel {
+    color: #ffffff; /* Texto blanco */
+}
+
+/* =========================================
+   3. CAJAS DE TEXTO (USUARIO Y CONTRASEÑA)
+   ========================================= */
+QLineEdit {
+    background-color: rgba(30, 30, 30, 200); /* Gris oscuro semi-transparente */
+    border: 2px solid #555555; /* Borde gris apagado por defecto */
+    border-radius: 10px; /* Esquinas redondeadas */
+    color: #ffffff; /* Letras blancas al escribir */
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Efecto Neón cuando le das clic a la caja para escribir */
+QLineEdit:focus {
+    border: 2px solid #ff0000; /* Borde rojo brillante */
+    background-color: rgba(50, 20, 20, 200); /* Un ligero tono rojizo en el fondo */
+}
+
+/* =========================================
+   4. BOTÓN PRINCIPAL (ENTRAR)
+   ========================================= */
+QPushButton {
+    background-color: #ff0000; /* Rojo sólido ZoomFit */
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Efecto cuando pasas el mouse por encima del botón */
+QPushButton:hover {
+    background-color: #cc0000; /* Rojo más oscuro para dar efecto de clic */
+}
