@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1570</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* =========================================
+   1. FONDO DE LA VENTANA (MAINWINDOW)
+   ========================================= */
+QMainWindow, #centralwidget {
+    background-color: #0a0a0a; /* Negro oscuro profundo */
+}
+
+/* =========================================
+   2. TEXTOS (LABELS)
+   ========================================= */
+QLabel {
+    color: #ffffff; /* Texto blanco */
+}
+
+/* =========================================
+   3. CAJAS DE TEXTO (USUARIO Y CONTRASEÑA)
+   ========================================= */
+QLineEdit {
+    background-color: rgba(30, 30, 30, 200); /* Gris oscuro semi-transparente */
+    border: 2px solid #555555; /* Borde gris apagado por defecto */
+    border-radius: 10px; /* Esquinas redondeadas */
+    color: #ffffff; /* Letras blancas al escribir */
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Efecto Neón cuando le das clic a la caja para escribir */
+QLineEdit:focus {
+    border: 2px solid #ff0000; /* Borde rojo brillante */
+    background-color: rgba(50, 20, 20, 200); /* Un ligero tono rojizo en el fondo */
+}
+
+/* =========================================
+   4. BOTÓN PRINCIPAL (ENTRAR)
+   ========================================= */
+QPushButton {
+    background-color: #ff0000; /* Rojo sólido ZoomFit */
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Efecto cuando pasas el mouse por encima del botón */
+QPushButton:hover {
+    background-color: #cc0000; /* Rojo más oscuro para dar efecto de clic */
+}
+
+/* =========================================
+   5. ESTILO PARA EL CALENDARIO (TABLA)
+   ========================================= */
+QTableWidget {
+    background-color: #0d0d0d;
+    gridline-color: #333333; /* Líneas de la tabla discretas */
+    border: 1px solid #ff0000;
+    color: #ffffff;
+}
+
+QHeaderView::section {
+    background-color: #1a1a1a;
+    color: #ff0000; /* Títulos de días en rojo */
+    padding: 5px;
+    font-weight: bold;
+    border: 1px solid #333333;
+}
+
+QTableWidget::item:selected {
+    background-color: rgba(255, 0, 0, 100); /* Rojo suave al seleccionar */
+    color: white;
+}
+
+/* =========================================
+   6. ESQUINA SUPERIOR IZQUIERDA DE LA TABLA
+   ========================================= */
+QTableCornerButton::section {
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+}
+
+/* =========================================
+   7. BARRAS DE DESPLAZAMIENTO (SCROLLBARS)
+   ========================================= */
+/* Fondo general de la vista de la tabla para áreas sin celdas */
+QTableView {
+    background-color: #0d0d0d;
+}
+
+/* Barra vertical */
+QScrollBar:vertical {
+    background-color: #121212;
+    width: 15px; /* Ancho de la barra */
+    margin: 0px 0px 0px 0px;
+}
+
+/* El &quot;agarrador&quot; de la barra que subes y bajas */
+QScrollBar::handle:vertical {
+    background-color: #ff0000; /* Rojo ZoomFit */
+    border-radius: 7px;
+    min-height: 30px;
+}
+
+/* Efecto al pasar el mouse por la barra */
+QScrollBar::handle:vertical:hover {
+    background-color: #cc0000;
+}
+
+/* Ocultar las flechitas feas de arriba y abajo por defecto */
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background: none;
+    border: none;
+}
+
+
+
+/* =========================================
+   8. ESTILO PARA COMBOBOX (LISTAS DESPLEGABLES)
+   ========================================= */
+
+/* La caja principal del selector */
+QComboBox {
+    background-color: #121212;
+    border: 2px solid #555555; /* Borde gris apagado por defecto */
+    border-radius: 10px;
+    padding: 8px 15px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+/* Cuando pasas el mouse o está abierto */
+QComboBox:hover, QComboBox:focus {
+    border: 2px solid #ff0000; /* Borde rojo neón */
+    background-color: #1a1a1a;
+}
+
+/* La flecha pequeña (puedes usar una imagen o dejarla básica) */
+QComboBox::down-arrow {
+	padding-right: 10px;
+    width: 12px;
+    height: 12px;
+}
+
+/* Estilo del botón de la flecha a la derecha */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 35px;
+    border-left: 1px solid #333333; /* Línea divisoria sutil */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+/* IMPORTANTE: El menú desplegable (la lista que aparece) */
+QComboBox QAbstractItemView {
+    background-color: #0d0d0d; /* Fondo casi negro */
+    color: #ffffff;
+    border: 1px solid #ff0000; /* Borde rojo del menú */
+    selection-background-color: #ff0000; /* Fondo rojo al seleccionar */
+    selection-color: #ffffff;
+    outline: 0px; /* Quita el borde punteado feo de selección */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Cada elemento de la lista */
+QComboBox QAbstractItemView::item {
+    min-height: 35px; /* Hace los elementos más fáciles de tocar/cliquear */
+    padding-left: 10px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Ignored</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>350</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>../img/ChatGPT Image 4 may 2026, 22_22_36.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Ignored</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_6">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Ignored</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox">
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Ignored</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="styleSheet">
+         <string notr="true">/* =========================================
+   9. ESTILO PARA EL ÁREA DE DESPLAZAMIENTO
+   ========================================= */
+QScrollArea {
+    border: none; /* Quitamos el borde para que no se vea una caja dentro de otra */
+    background-color: transparent;
+}
+
+/* El fondo del contenido interno */
+#scrollAreaWidgetContents {
+    background-color: #0a0a0a; /* Mismo negro que el fondo principal */
+}
+
+/* Reutilizamos el estilo de la barra roja que hicimos antes */
+QScrollBar:vertical {
+    background-color: #0a0a0a;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #ff0000; /* Rojo Neón */
+    border-radius: 6px;
+    min-height: 20px;
+}</string>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>1538</width>
+           <height>202</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="1" column="1">
+             <widget class="QFrame" name="frame_5">
+              <property name="styleSheet">
+               <string notr="true">/* =========================================
+   ESTILO PARA TARJETAS DE GRÁFICAS (DASHBOARD)
+   ========================================= */
+QFrame {
+    background-color: #121212; /* Un gris un pelín más claro que el fondo negro */
+    border: 2px solid #333333; /* Borde discreto por defecto */
+    border-radius: 15px;
+    margin: 5px; /* Separación entre tarjetas */
+}
+
+/* Efecto hover: que el recuadro brille en rojo si pasas el mouse por la gráfica */
+QFrame:hover {
+    border: 2px solid #ff0000;
+}
+
+/* Títulos de cada gráfica */
+QFrame QLabel {
+    color: #ff3333; /* Texto rojo neón */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border: none; /* Quitamos el borde del label para que no estorbe */
+    border-bottom: 1px solid #333333; /* Una línea sutil debajo del título */
+}
+
+/* El widget vacío donde irá la gráfica de Python */
+QWidget#contenedor_grafica_genero,
+QWidget#contenedor_grafica_edades,
+QWidget#contenedor_grafica_clases {
+    background-color: transparent;
+    border: none;
+}</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>Distribución de Membresías</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_5" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QFrame" name="frame_3">
+              <property name="styleSheet">
+               <string notr="true">/* =========================================
+   ESTILO PARA TARJETAS DE GRÁFICAS (DASHBOARD)
+   ========================================= */
+QFrame {
+    background-color: #121212; /* Un gris un pelín más claro que el fondo negro */
+    border: 2px solid #333333; /* Borde discreto por defecto */
+    border-radius: 15px;
+    margin: 5px; /* Separación entre tarjetas */
+}
+
+/* Efecto hover: que el recuadro brille en rojo si pasas el mouse por la gráfica */
+QFrame:hover {
+    border: 2px solid #ff0000;
+}
+
+/* Títulos de cada gráfica */
+QFrame QLabel {
+    color: #ff3333; /* Texto rojo neón */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border: none; /* Quitamos el borde del label para que no estorbe */
+    border-bottom: 1px solid #333333; /* Una línea sutil debajo del título */
+}
+
+/* El widget vacío donde irá la gráfica de Python */
+QWidget#contenedor_grafica_genero,
+QWidget#contenedor_grafica_edades,
+QWidget#contenedor_grafica_clases {
+    background-color: transparent;
+    border: none;
+}</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Asistencia total por día de la semana</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_3" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QFrame" name="frame_2">
+              <property name="styleSheet">
+               <string notr="true">/* =========================================
+   ESTILO PARA TARJETAS DE GRÁFICAS (DASHBOARD)
+   ========================================= */
+QFrame {
+    background-color: #121212; /* Un gris un pelín más claro que el fondo negro */
+    border: 2px solid #333333; /* Borde discreto por defecto */
+    border-radius: 15px;
+    margin: 5px; /* Separación entre tarjetas */
+}
+
+/* Efecto hover: que el recuadro brille en rojo si pasas el mouse por la gráfica */
+QFrame:hover {
+    border: 2px solid #ff0000;
+}
+
+/* Títulos de cada gráfica */
+QFrame QLabel {
+    color: #ff3333; /* Texto rojo neón */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border: none; /* Quitamos el borde del label para que no estorbe */
+    border-bottom: 1px solid #333333; /* Una línea sutil debajo del título */
+}
+
+/* El widget vacío donde irá la gráfica de Python */
+QWidget#contenedor_grafica_genero,
+QWidget#contenedor_grafica_edades,
+QWidget#contenedor_grafica_clases {
+    background-color: transparent;
+    border: none;
+}</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>Clases con más asistencia</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_2" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frame">
+              <property name="styleSheet">
+               <string notr="true">/* =========================================
+   ESTILO PARA TARJETAS DE GRÁFICAS (DASHBOARD)
+   ========================================= */
+QFrame {
+    background-color: #121212; /* Un gris un pelín más claro que el fondo negro */
+    border: 2px solid #333333; /* Borde discreto por defecto */
+    border-radius: 15px;
+    margin: 5px; /* Separación entre tarjetas */
+}
+
+/* Efecto hover: que el recuadro brille en rojo si pasas el mouse por la gráfica */
+QFrame:hover {
+    border: 2px solid #ff0000;
+}
+
+/* Títulos de cada gráfica */
+QFrame QLabel {
+    color: #ff3333; /* Texto rojo neón */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border: none; /* Quitamos el borde del label para que no estorbe */
+    border-bottom: 1px solid #333333; /* Una línea sutil debajo del título */
+}
+
+/* El widget vacío donde irá la gráfica de Python */
+QWidget#contenedor_grafica_genero,
+QWidget#contenedor_grafica_edades,
+QWidget#contenedor_grafica_clases {
+    background-color: transparent;
+    border: none;
+}</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Distribución de Género</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QFrame" name="frame_4">
+              <property name="styleSheet">
+               <string notr="true">/* =========================================
+   ESTILO PARA TARJETAS DE GRÁFICAS (DASHBOARD)
+   ========================================= */
+QFrame {
+    background-color: #121212; /* Un gris un pelín más claro que el fondo negro */
+    border: 2px solid #333333; /* Borde discreto por defecto */
+    border-radius: 15px;
+    margin: 5px; /* Separación entre tarjetas */
+}
+
+/* Efecto hover: que el recuadro brille en rojo si pasas el mouse por la gráfica */
+QFrame:hover {
+    border: 2px solid #ff0000;
+}
+
+/* Títulos de cada gráfica */
+QFrame QLabel {
+    color: #ff3333; /* Texto rojo neón */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border: none; /* Quitamos el borde del label para que no estorbe */
+    border-bottom: 1px solid #333333; /* Una línea sutil debajo del título */
+}
+
+/* El widget vacío donde irá la gráfica de Python */
+QWidget#contenedor_grafica_genero,
+QWidget#contenedor_grafica_edades,
+QWidget#contenedor_grafica_clases {
+    background-color: transparent;
+    border: none;
+}</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Rango de edades de los clientes</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_4" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1570</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
